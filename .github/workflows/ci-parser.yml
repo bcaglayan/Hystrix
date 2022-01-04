@@ -16,7 +16,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
 
-      - run: ./gradlew clean test --rerun-tasks --stacktrace
+      - run: ./gradlew clean test --rerun-tasks --stacktrace -Dorg.gradle.java.home=/opt/hostedtoolcache/Java_Adopt_jdk/11.0.11-9/x64
       
       - run: ls build/test-results
       - run: ls build/test-results/test
