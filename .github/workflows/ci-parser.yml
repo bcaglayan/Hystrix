@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ci-parser
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ci_parser_try:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Project Checkout
+        uses: actions/checkout@v2.4.0
+
+      - run: ./gradlew clean test --rerun-tasks --stacktrace
+      
+      - run: ls build/test-results
+      - run: ls build/test-results/test
+        
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-result-junit
+          path: build/test-results/test
